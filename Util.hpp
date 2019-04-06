@@ -7,6 +7,14 @@
 namespace Util
 {
     template<typename T>
+    static inline T Abs(T value)
+    {
+        if (value < 0) return -value;
+
+        return value;
+    }
+
+    template<typename T>
     static inline char* UintToString(T value, char* buffer, const uint8_t base)
     {
         uint8_t i = 0;
@@ -42,7 +50,7 @@ namespace Util
     static inline char* IntToString(T value, char* buffer, const uint8_t base)
     {
             // consider absolute value of number
-    T n = abs(value);
+    T n = Abs(value);
  
     uint8_t i = 0;
     while (n)

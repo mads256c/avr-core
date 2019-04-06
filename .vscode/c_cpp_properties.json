@@ -31,10 +31,7 @@
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64",
-            "forcedInclude": [
-                "/home/mads/.arduino15/packages/arduino/hardware/avr/1.6.23/cores/arduino/Arduino.h"
-            ]
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4
