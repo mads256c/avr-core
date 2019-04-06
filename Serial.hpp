@@ -57,11 +57,18 @@ static inline void TransmitString(const char* str)
     }
 }
 
-static inline void TransmitUint8(const uint8_t number, const uint8_t base)
+static inline void TransmitUint8(const uint8_t number, const uint8_t base = 10)
 {
     char buffer[9] = {0};
 
     TransmitString(Util::Uint8ToString(number, buffer, base));
+}
+
+static inline void TransmitUint16(const uint8_t number, const uint8_t base = 10)
+{
+    char buffer[17] = {0};
+
+    TransmitString(Util::Uint16ToString(number, buffer, base));
 }
 } // namespace Serial
 

@@ -6,15 +6,13 @@
 
 namespace Util
 {
-    static inline char* Uint8ToString(const uint8_t value, char* buffer, const uint8_t base)
+    static inline char* Uint8ToString(uint8_t value, char* buffer, const uint8_t base)
     {
-        uint8_t n = value;
-
         uint8_t i = 0;
 
-        while (n)
+        while (value)
         {
-            const uint8_t remainder = n % base;
+            const uint8_t remainder = value % base;
 
             if (remainder >= 10)
             {
@@ -26,7 +24,38 @@ namespace Util
                 buffer[i++] = 48 + remainder;
             }
             
-            n /= base;
+            value /= base;
+        }
+
+        if (i == 0)
+        {
+            buffer[i++] = '0';
+        }
+
+        buffer[i] = '\0';
+
+        return strrev(buffer);
+    }
+
+    static inline char* Uint16ToString(uint16_t value, char* buffer, const uint8_t base)
+    {
+        uint8_t i = 0;
+
+        while (value)
+        {
+            const uint8_t remainder = value % base;
+
+            if (remainder >= 10)
+            {
+                buffer[i++] = 65 + (remainder - 10);
+            }
+            else
+            {
+                //Convert number to ascii number
+                buffer[i++] = 48 + remainder;
+            }
+            
+            value /= base;
         }
 
         if (i == 0)
