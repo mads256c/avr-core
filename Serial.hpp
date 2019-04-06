@@ -71,6 +71,20 @@ static inline void TransmitUint16(const uint16_t number, const uint8_t base = 10
 
     TransmitString(Util::Uint16ToString(number, buffer, base));
 }
+
+static inline void TransmitUint32(const uint32_t number, const uint8_t base = 10)
+{
+    char buffer[33] = {0};
+
+    TransmitString(Util::Uint32ToString(number, buffer, base));
+}
+
+static inline void TransmitUint64(const uint64_t number, const uint8_t base = 10)
+{
+    char buffer[65] = {0};
+
+    TransmitString(Util::Uint64ToString(number, buffer, base));
+}
 } // namespace Serial
 
 #endif
