@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "AVR",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino/**",
+                "C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/**"
+            ],
+            "defines": [
+                "__AVR_ATmega328P__"
+            ],
+            "compilerPath": "avr-gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
