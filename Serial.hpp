@@ -62,28 +62,28 @@ static inline void TransmitInt8(const int8_t number, const uint8_t base = 10)
 {
     char buffer[9] = {0};
 
-    TransmitString(Util::IntToString<int8_t>(number, buffer, base));
+    TransmitString(Util::IntToString<int8_t, uint8_t>(number, buffer, base));
 }
 
 static inline void TransmitInt16(const int16_t number, const uint8_t base = 10)
 {
     char buffer[17] = {0};
 
-    TransmitString(Util::IntToString<int16_t>(number, buffer, base));
+    TransmitString(Util::IntToString<int16_t, uint16_t>(number, buffer, base));
 }
 
 static inline void TransmitInt32(const int32_t number, const uint8_t base = 10)
 {
     char buffer[33] = {0};
 
-    TransmitString(Util::IntToString<int32_t>(number, buffer, base));
+    TransmitString(Util::IntToString<int32_t, uint32_t>(number, buffer, base));
 }
 
 static inline void TransmitInt16(const int64_t number, const uint8_t base = 10)
 {
     char buffer[65] = {0};
 
-    TransmitString(Util::IntToString<int64_t>(number, buffer, base));
+    TransmitString(Util::IntToString<int64_t, uint64_t>(number, buffer, base));
 }
 
 static inline void TransmitUint8(const uint8_t number, const uint8_t base = 10)
