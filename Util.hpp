@@ -54,9 +54,9 @@ static inline char *IntToString(T value, char *buffer, const uint8_t base)
 
     U n = value;
     if (value < 0)
-        U = -value;
+        n = -value;
     else
-        U = value;
+        n = value;
 
     uint8_t i = 0;
     while (n)
