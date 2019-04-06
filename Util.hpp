@@ -48,7 +48,7 @@ static inline char *UintToString(T value, char *buffer, const uint8_t base)
 }
 
 template <typename T, typename U>
-static inline char *IntToString(T value, char *buffer, const uint8_t base)
+static inline char *IntToString(const T value, char *buffer, const uint8_t base)
 {
     // consider absolute value of number
 
