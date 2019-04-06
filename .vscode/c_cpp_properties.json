@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "AVR",
+            "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino/**",
@@ -14,6 +14,24 @@
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/mads/.arduino15/packages/arduino/tools/**",
+                "/home/mads/.arduino15/packages/arduino/hardware/avr/1.6.23/**",
+                "${workspaceFolder}/**",
+                "/usr/share/arduino/hardware/archlinux-arduino/avr/variants/standard/",
+                "/usr/share/arduino/hardware/archlinux-arduino/avr/cores/arduino/**",
+                "/usr/avr/include/**"
+            ],
+            "defines": [
+                "__AVR_ATmega328P__"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4

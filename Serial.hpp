@@ -19,8 +19,8 @@ static inline void Begin(const uint32_t baudrate)
     UBRR0H = (uint8_t)((ubrr >> 8) & 0xFF);
     UBRR0L = (uint8_t)(ubrr & 0xFF);
 
-    /*Enable transmitter */
-    UCSR0B = (1 << TXEN0);
+    /*Enable transmitter and receiver*/
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0);
 
     /* Set frame format: 8data */
     UCSR0C = (1 << USBS0) | (3 << UCSZ00);
@@ -48,7 +48,7 @@ static inline void Transmit(const uint8_t data)
 
 static inline void TransmitString(const char* str)
 {
-    while(str)
+    while(*str)
     {
         Transmit(*str);
         str++;
