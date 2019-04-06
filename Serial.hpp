@@ -12,7 +12,8 @@ namespace Serial
 {
 static inline void Begin(const uint32_t baudrate)
 {
-    const uint16_t ubrr = F_CPU / 16 / baudrate - 1;
+    //const uint16_t ubrr = F_CPU / 16 / baudrate - 1;
+    const uint16_t ubrr = (F_CPU / 8 / baudrate - 1) / 2;
 
     /*Set baud rate */
     /* UBRR0H contains the 4 most significant bits of the
