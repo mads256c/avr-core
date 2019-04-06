@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <avr/io.h>
 
+#include "Util.hpp"
+
 #define F_CPU 16000000UL
 
 namespace Serial
@@ -53,6 +55,13 @@ static inline void TransmitString(const char* str)
         Transmit(*str);
         str++;
     }
+}
+
+static inline void TransmitUint8(const uint8_t number, const uint8_t base)
+{
+    char buffer[9] = {0};
+
+    TransmitString(Util::Uint8ToString(number, buffer, base));
 }
 } // namespace Serial
 
