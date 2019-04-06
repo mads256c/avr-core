@@ -58,32 +58,60 @@ static inline void TransmitString(const char* str)
     }
 }
 
+static inline void TransmitInt8(const int8_t number, const uint8_t base = 10)
+{
+    char buffer[9] = {0};
+
+    TransmitString(Util::IntToString<int8_t>(number, buffer, base));
+}
+
+static inline void TransmitInt16(const int16_t number, const uint8_t base = 10)
+{
+    char buffer[17] = {0};
+
+    TransmitString(Util::IntToString<int16_t>(number, buffer, base));
+}
+
+static inline void TransmitInt32(const int32_t number, const uint8_t base = 10)
+{
+    char buffer[33] = {0};
+
+    TransmitString(Util::IntToString<int32_t>(number, buffer, base));
+}
+
+static inline void TransmitInt16(const int64_t number, const uint8_t base = 10)
+{
+    char buffer[65] = {0};
+
+    TransmitString(Util::IntToString<int64_t>(number, buffer, base));
+}
+
 static inline void TransmitUint8(const uint8_t number, const uint8_t base = 10)
 {
     char buffer[9] = {0};
 
-    TransmitString(Util::Uint8ToString(number, buffer, base));
+    TransmitString(Util::UintToString<uint8_t>(number, buffer, base));
 }
 
 static inline void TransmitUint16(const uint16_t number, const uint8_t base = 10)
 {
     char buffer[17] = {0};
 
-    TransmitString(Util::Uint16ToString(number, buffer, base));
+    TransmitString(Util::UintToString<uint16_t>(number, buffer, base));
 }
 
 static inline void TransmitUint32(const uint32_t number, const uint8_t base = 10)
 {
     char buffer[33] = {0};
 
-    TransmitString(Util::Uint32ToString(number, buffer, base));
+    TransmitString(Util::UintToString<uint32_t>(number, buffer, base));
 }
 
 static inline void TransmitUint64(const uint64_t number, const uint8_t base = 10)
 {
     char buffer[65] = {0};
 
-    TransmitString(Util::Uint64ToString(number, buffer, base));
+    TransmitString(Util::UintToString<uint64_t>(number, buffer, base));
 }
 } // namespace Serial
 
