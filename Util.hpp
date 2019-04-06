@@ -46,11 +46,18 @@ namespace Util
         return strrev(buffer);
     }
 
-    template<typename T>
+    template<typename T, typename U>
     static inline char* IntToString(T value, char* buffer, const uint8_t base)
     {
             // consider absolute value of number
-    T n = Abs(value);
+    
+    U n = value;
+    if (value < 0)
+        U = -value;
+    else
+        U = value;
+    
+
  
     uint8_t i = 0;
     while (n)
