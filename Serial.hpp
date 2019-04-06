@@ -64,7 +64,7 @@ static inline void TransmitUint8(const uint8_t number, const uint8_t base = 10)
     TransmitString(Util::Uint8ToString(number, buffer, base));
 }
 
-static inline void TransmitUint16(const uint8_t number, const uint8_t base = 10)
+static inline void TransmitUint16(const uint16_t number, const uint8_t base = 10)
 {
     char buffer[17] = {0};
 
