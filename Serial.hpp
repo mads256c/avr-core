@@ -49,9 +49,9 @@ static inline void Transmit(const uint8_t data)
     UDR0 = data;
 }
 
-static inline void TransmitString(const char* str)
+static inline void TransmitString(const char *str)
 {
-    while(*str)
+    while (*str)
     {
         Transmit(*str);
         str++;
@@ -86,11 +86,11 @@ static inline void TransmitInt64(const int64_t number, const uint8_t base = 10)
     TransmitString(Util::IntToString<int64_t, uint64_t>(number, buffer, base));
 }
 
-template<typename T>
+template <typename T>
 static inline void TransmitUint(const T number, const uint8_t base = 10)
 {
     //Convert byte length to bits and add 1 for null terminator.
-    char buffer[(sizeof(T) * 8) + 1]
+    char buffer[(sizeof(T) * 8) + 1] = {0};
 
     TransmitString(Util::UintToString<T>(number, buffer, base));
 }
