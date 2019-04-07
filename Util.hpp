@@ -87,6 +87,18 @@ static inline char *IntToString(const T value, char *buffer, const uint8_t base)
     return strrev(buffer);
 }
 
+template <typename T, typename U>
+struct IsSame
+{
+    static const bool value = false;
+};
+
+template <typename T>
+struct IsSame<T, T>
+{
+    static const bool value = true;
+};
+
 } // namespace Util
 
 #endif
