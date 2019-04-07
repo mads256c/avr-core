@@ -65,7 +65,7 @@ static inline void TransmitInt(const T number, const uint8_t base = 10)
     {
         char buffer[(sizeof(T) * 8) + 1] = {0};
 
-        TransmitString(Util::IntToString<T, uint8_t>(number, buffer, base))
+        TransmitString(Util::IntToString<T, uint8_t>(number, buffer, base));
     }
     else
     {
