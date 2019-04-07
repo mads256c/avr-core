@@ -69,7 +69,8 @@ static inline void TransmitInt(const T number, const uint8_t base = 10)
     }
     else
     {
-        static_assert(false, "T is not a int type");
+        static_assert(Util::IsSame<T, int64_t>::value, "invalid int type");
+        //static_assert(false, "T is not a int type");
     }
     
 }
