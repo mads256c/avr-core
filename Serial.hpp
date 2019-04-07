@@ -61,7 +61,7 @@ static inline void TransmitString(const char *str)
 template<typename T>
 static inline void TransmitInt(const T number, const uint8_t base = 10)
 {
-    if constexpr (Util::IsSame<T, uint8_t>::value)
+    if constexpr (Util::IsSame<T, int8_t>::value)
     {
         char buffer[(sizeof(T) * 8) + 1] = {0};
 
