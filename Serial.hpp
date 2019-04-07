@@ -61,16 +61,24 @@ static inline void TransmitString(const char *str)
 template<typename T>
 static inline void TransmitInt(const T number, const uint8_t base = 10)
 {
+    char buffer[(sizeof(T) * 8) + 1] = {0};
+
     if constexpr (Util::IsSame<T, int8_t>::value)
     {
-        char buffer[(sizeof(T) * 8) + 1] = {0};
-
         TransmitString(Util::IntToString<T, uint8_t>(number, buffer, base));
+    }
+    else if (Util::IsSame<T, int16_t>::value)
+    {
+        TransmitString(Util::IntToString<T, uint16_t>(number, buffer, base));
+    }
+    else if (Util::IsSame<T, int32_t>::value)
+    {
+        TransmitString(Util::IntToString<T, uint32_t>(number, buffer, base));
     }
     else
     {
         static_assert(Util::IsSame<T, int64_t>::value, "invalid int type");
-        //static_assert(false, "T is not a int type");
+        TransmitString(Util::IntToString<T, uint64_t>(number, buffer, base));
     }
     
 }
