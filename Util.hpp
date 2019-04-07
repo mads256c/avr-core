@@ -7,7 +7,7 @@
 namespace Util
 {
 template <typename T>
-static inline T Abs(T value)
+constexpr inline T Abs(T value)
 {
     if (value < 0)
         return -value;
@@ -16,7 +16,7 @@ static inline T Abs(T value)
 }
 
 template <typename T>
-static inline char *UintToString(T value, char *buffer, const uint8_t base)
+constexpr inline char *UintToString(T value, char *buffer, const uint8_t base)
 {
     uint8_t i = 0;
 
@@ -48,7 +48,7 @@ static inline char *UintToString(T value, char *buffer, const uint8_t base)
 }
 
 template <typename T, typename U>
-static inline char *IntToString(const T value, char *buffer, const uint8_t base)
+constexpr inline char *IntToString(const T value, char *buffer, const uint8_t base)
 {
     // consider absolute value of number
 
