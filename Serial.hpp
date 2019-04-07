@@ -58,6 +58,22 @@ static inline void TransmitString(const char *str)
     }
 }
 
+template<typename T>
+static inline void TransmitInt(const T number, const uint8_t base = 10)
+{
+    if constexpr (T == int8_t)
+    {
+        char buffer[(sizeof(T) * 8) + 1] = {0};
+
+        TransmitString(Util::IntToString<T, uint8_t>(number, buffer, base))
+    }
+    else
+    {
+        static_assert(false, "T is not a int type");
+    }
+    
+}
+
 static inline void TransmitInt8(const int8_t number, const uint8_t base = 10)
 {
     char buffer[9] = {0};
@@ -86,6 +102,9 @@ static inline void TransmitInt64(const int64_t number, const uint8_t base = 10)
     TransmitString(Util::IntToString<int64_t, uint64_t>(number, buffer, base));
 }
 
+//T is the type of uint to print
+//size is the size of the buffer array. It should be number of digits + 1.
+//If size is 0 it uses a safe but huge buffer array.
 template <typename T, uint8_t size = 0>
 static inline void TransmitUint(const T number, const uint8_t base = 10)
 {
@@ -102,34 +121,6 @@ static inline void TransmitUint(const T number, const uint8_t base = 10)
 
         TransmitString(Util::UintToString<T>(number, buffer, base));
     }
-}
-
-static inline void TransmitUint8(const uint8_t number, const uint8_t base = 10)
-{
-    char buffer[9] = {0};
-
-    TransmitString(Util::UintToString<uint8_t>(number, buffer, base));
-}
-
-static inline void TransmitUint16(const uint16_t number, const uint8_t base = 10)
-{
-    char buffer[17] = {0};
-
-    TransmitString(Util::UintToString<uint16_t>(number, buffer, base));
-}
-
-static inline void TransmitUint32(const uint32_t number, const uint8_t base = 10)
-{
-    char buffer[33] = {0};
-
-    TransmitString(Util::UintToString<uint32_t>(number, buffer, base));
-}
-
-static inline void TransmitUint64(const uint64_t number, const uint8_t base = 10)
-{
-    char buffer[65] = {0};
-
-    TransmitString(Util::UintToString<uint64_t>(number, buffer, base));
 }
 } // namespace Serial
 
