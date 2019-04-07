@@ -86,13 +86,22 @@ static inline void TransmitInt64(const int64_t number, const uint8_t base = 10)
     TransmitString(Util::IntToString<int64_t, uint64_t>(number, buffer, base));
 }
 
-template <typename T>
+template <typename T, uint8_t size = 0>
 static inline void TransmitUint(const T number, const uint8_t base = 10)
 {
-    //Convert byte length to bits and add 1 for null terminator.
-    char buffer[(sizeof(T) * 8) + 1] = {0};
+    if constexpr (size == 0)
+    {
+        //Convert byte length to bits and add 1 for null terminator.
+        char buffer[(sizeof(T) * 8) + 1] = {0};
 
-    TransmitString(Util::UintToString<T>(number, buffer, base));
+        TransmitString(Util::UintToString<T>(number, buffer, base));
+    }
+    else
+    {
+        char buffer[size] = {0};
+
+        TransmitString(Util::UintToString<T>(number, buffer, base));
+    }
 }
 
 static inline void TransmitUint8(const uint8_t number, const uint8_t base = 10)
