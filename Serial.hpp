@@ -83,34 +83,6 @@ static inline void TransmitInt(const T number, const uint8_t base = 10)
     
 }
 
-static inline void TransmitInt8(const int8_t number, const uint8_t base = 10)
-{
-    char buffer[9] = {0};
-
-    TransmitString(Util::IntToString<int8_t, uint8_t>(number, buffer, base));
-}
-
-static inline void TransmitInt16(const int16_t number, const uint8_t base = 10)
-{
-    char buffer[17] = {0};
-
-    TransmitString(Util::IntToString<int16_t, uint16_t>(number, buffer, base));
-}
-
-static inline void TransmitInt32(const int32_t number, const uint8_t base = 10)
-{
-    char buffer[33] = {0};
-
-    TransmitString(Util::IntToString<int32_t, uint32_t>(number, buffer, base));
-}
-
-static inline void TransmitInt64(const int64_t number, const uint8_t base = 10)
-{
-    char buffer[65] = {0};
-
-    TransmitString(Util::IntToString<int64_t, uint64_t>(number, buffer, base));
-}
-
 //T is the type of uint to print
 //size is the size of the buffer array. It should be number of digits + 1.
 //If size is 0 it uses a safe but huge buffer array.
