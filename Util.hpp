@@ -6,13 +6,13 @@
 
 namespace Util
 {
-template <typename T>
-constexpr inline T Abs(T value)
+template <typename T, typename RetT = T>
+constexpr inline RetT Abs(T value)
 {
     if (value < 0)
-        return -value;
+        return -((RetT)value);
 
-    return value;
+    return (RetT)value;
 }
 
 template <typename T>
@@ -52,11 +52,7 @@ constexpr inline char *IntToString(const T value, char *buffer, const uint8_t ba
 {
     // consider absolute value of number
 
-    U n = value;
-    if (value < 0)
-        n = -value;
-    else
-        n = value;
+    U n = Abs<T, U>(value);
 
     uint8_t i = 0;
     while (n)

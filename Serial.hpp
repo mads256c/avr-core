@@ -6,8 +6,6 @@
 
 #include "Util.hpp"
 
-#define F_CPU 16000000UL
-
 namespace Serial
 {
 static inline void Begin(const uint32_t baudrate)
@@ -67,11 +65,11 @@ static inline void TransmitInt(const T number, const uint8_t base = 10)
     {
         TransmitString(Util::IntToString<T, uint8_t>(number, buffer, base));
     }
-    else if (Util::IsSame<T, int16_t>::value)
+    else if constexpr (Util::IsSame<T, int16_t>::value)
     {
         TransmitString(Util::IntToString<T, uint16_t>(number, buffer, base));
     }
-    else if (Util::IsSame<T, int32_t>::value)
+    else if contexpr (Util::IsSame<T, int32_t>::value)
     {
         TransmitString(Util::IntToString<T, uint32_t>(number, buffer, base));
     }

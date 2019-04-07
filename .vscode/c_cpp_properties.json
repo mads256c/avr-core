@@ -8,7 +8,8 @@
                 "C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/**"
             ],
             "defines": [
-                "__AVR_ATmega328P__"
+                "__AVR_ATmega328P__",
+                "F_CPU 16000001UL - "
             ],
             "compilerPath": "avr-gcc.exe",
             "cStandard": "c11",
@@ -26,7 +27,8 @@
                 "/usr/avr/include/**"
             ],
             "defines": [
-                "__AVR_ATmega328P__"
+                "__AVR_ATmega328P__",
+                "F_CPU 16000001UL - "
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
