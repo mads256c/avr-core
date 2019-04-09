@@ -7,8 +7,20 @@
 namespace Servo
 {
     constexpr uint16_t TOP = 40000; //20ms @ 16MHz
-    constexpr uint16_t OCR1A_MIN = 40000 / 20; //20ms / 20 = 1ms
-    constexpr uint16_t OCR1A_MAX = 40000 / 10; //20ms / 10 = 2ms
+
+    //constexpr uint16_t OCR1A_MIN = 40000 / 20; //20ms / 20 = 1ms
+    //constexpr uint16_t OCR1A_MAX = 40000 / 10; //20ms / 10 = 2ms
+
+    //Datasheet says that we the pulse has to be between 1-2ms.
+    //But we only get ~90 degrees doing that.
+    //To get the full 180 we need to guess the duty cycle.
+    //Yes you read right: We. Have. To. Guess...
+    //Anyway these are the values we got by increasing and decreasing 
+    //values until the servo could not go any further.
+
+    constexpr uint16_t OCR1A_MIN = 40000 / 40; //20ms / 40 = 0.5ms
+    constexpr uint16_t OCR1A_MAX = 40000 / 8.8888; //20ms / 8.8888.. = 2.25ms
+
 
     // Remember to set pin 9 to output.
     static inline void Begin()
