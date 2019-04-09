@@ -6,6 +6,7 @@
 
 namespace Util
 {
+// Return the absolute value.
 template <typename T, typename RetT = T>
 constexpr inline RetT Abs(T value)
 {
@@ -15,6 +16,7 @@ constexpr inline RetT Abs(T value)
     return (RetT)value;
 }
 
+// Convert a uint to a string
 template <typename T>
 constexpr inline char *UintToString(T value, char *buffer, const uint8_t base)
 {
@@ -47,6 +49,7 @@ constexpr inline char *UintToString(T value, char *buffer, const uint8_t base)
     return strrev(buffer);
 }
 
+// Convert int to string
 template <typename T, typename U>
 constexpr inline char *IntToString(const T value, char *buffer, const uint8_t base)
 {
@@ -83,6 +86,8 @@ constexpr inline char *IntToString(const T value, char *buffer, const uint8_t ba
     return strrev(buffer);
 }
 
+
+// These to structs are used to do type equallity at compile time.
 template <typename T, typename U>
 struct IsSame
 {
