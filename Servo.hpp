@@ -19,11 +19,16 @@ constexpr uint16_t TOP = ((F_CPU) / 8) / 50; //20ms @ 16MHz
 //constexpr uint16_t OCR1A_MAX = 40000 / 10; //20ms / 10 = 2ms
 
 // Datasheet says that we the pulse has to be between 1-2ms.
-// But we only get ~90 degrees doing that.
-// To get the full 180 we need to guess the duty cycle.
-// Yes you read right: We. Have. To. Guess...
+// We tested the signal and the signal was perfect on the oscilloscope.
+// But we only got a ~90 degree range doing that.
+// To get the full 180 degree range; we had to guess the duty cycle.
+// Yes you read right: We. Had. To. Guess...
 // Anyway these are the values we got by increasing and decreasing
-// values until the servo could not go any further.
+// the duty cycle until the servo could not go any further.
+// ...Actually this did not give us the full advertized 180 degree range.
+// We only got a 170 degree range. Yeah... Not only did the datasheet
+// lie, but the servo did not even go the full 180 degrees.
+// This was the point where we threw our hands up in the air and just went with it.
 
 constexpr uint16_t OCR1A_MIN = TOP / 40;     //20ms / 40 = 0.5ms
 constexpr uint16_t OCR1A_MAX = TOP / 8.8888; //20ms / 8.8888.. = 2.25ms
