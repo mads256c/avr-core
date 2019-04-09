@@ -31,11 +31,11 @@ constexpr uint16_t OCR1A_MAX = TOP / 8.8888; //20ms / 8.8888.. = 2.25ms
 // Remember to set pin 9 to output before calling this.
 static inline void Begin()
 {
-    ICR1 = TOP;        //Set TOP value
-    OCR1A = OCR1A_MAX; //Just to make sure the servo gets a valid signal.
+    ICR1 = TOP;        // Set TOP value
+    OCR1A = OCR1A_MAX; // Just to make sure the servo gets a valid signal.
 
-    TCCR1A = (1 << COM1A1) | (1 << WGM11);              //Set COM bits and the first two waveform generator bits
-    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11); //Set second two waveform generator bits and prescalar
+    TCCR1A = (1 << COM1A1) | (1 << WGM11);              // Set COM bits and the first two waveform generator bits
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11); // Set second two waveform generator bits and prescalar
 }
 
 // Sets the position of the servo.

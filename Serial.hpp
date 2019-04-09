@@ -105,7 +105,7 @@ static inline void TransmitUint(const T number, const uint8_t base = 10)
     Util::IsSame<T, uint16_t>::value || 
     Util::IsSame<T, uint32_t>::value ||
     Util::IsSame<T, uint64_t>::value,
-    "Type T is not valid");
+    "Type T is not a valid uint");
 
     if constexpr (size == 0)
     {
