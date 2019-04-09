@@ -8,9 +8,10 @@ namespace Servo
 {
 // Calculated using (cpufrequency / prescaler) / newfrequency.
 // Prescaler is chosen by the lowest that does not overflow the timer.
-// We have 16 bits total so that is 65535.
+// We have 16 bits total so that can max hold the value 65535, until it overflows.
 // If TOP is higher than that chose a higher prescaler.
 // For other CPU frequencies another prescaler may be chosen.
+// The lowest possible prescaler should be used to maximize precision.
 constexpr uint16_t TOP = ((F_CPU) / 8) / 50; //20ms @ 16MHz
 
 // These values describes the minimum and maximum duty cycles.
@@ -31,11 +32,12 @@ constexpr uint16_t OCR1A_MAX = TOP / 8.8888; //20ms / 8.8888.. = 2.25ms
 // Remember to set pin 9 to output before calling this.
 static inline void Begin()
 {
-    ICR1 = TOP;        // Set TOP value
-    OCR1A = OCR1A_MAX; // Just to make sure the servo gets a valid signal.
+    ICR1 = TOP;        // Set TOP value.
+    OCR1A = OCR1A_MAX; // Set the duty cycle just to make sure the servo gets a valid signal.
 
-    TCCR1A = (1 << COM1A1) | (1 << WGM11);              // Set COM bits and the first two waveform generator bits
-    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11); // Set second two waveform generator bits and prescalar
+    // Enable fast pwm, on pin 9 with a prescaler of 8.
+    TCCR1A = (1 << COM1A1) | (1 << WGM11);              // Enable PB1 (OC1A) for readwriteSet COM bits and the first two waveform generator bits.
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11); // Set second two waveform generator bits and prescalar.
 }
 
 // Sets the position of the servo.
