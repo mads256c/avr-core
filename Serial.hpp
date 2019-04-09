@@ -69,7 +69,7 @@ static inline void TransmitInt(const T number, const uint8_t base = 10)
     {
         TransmitString(Util::IntToString<T, uint16_t>(number, buffer, base));
     }
-    else if contexpr (Util::IsSame<T, int32_t>::value)
+    else if constexpr (Util::IsSame<T, int32_t>::value)
     {
         TransmitString(Util::IntToString<T, uint32_t>(number, buffer, base));
     }
