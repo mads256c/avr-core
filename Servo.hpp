@@ -34,7 +34,7 @@ static inline void Begin()
 {
     ICR1 = TOP;        // Set TOP value.
     OCR1A = OCR1A_MAX; // Set the duty cycle just to make sure the servo gets a valid signal.
-
+    
     // Enable fast pwm, on pin 9 with a prescaler of 8.
     TCCR1A = (1 << COM1A1) | (1 << WGM11);              // Enable PB1 (OC1A) for readwriteSet COM bits and the first two waveform generator bits.
     TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11); // Set second two waveform generator bits and prescalar.
