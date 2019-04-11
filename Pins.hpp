@@ -5,6 +5,7 @@
 #include <avr/io.h>
 #include <avr/builtins.h>
 
+// Encapsulates functions specific to pin manipulation.
 namespace Pins
 {
 // Set the pin mode on a specific pin.

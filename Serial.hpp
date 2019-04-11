@@ -6,6 +6,7 @@
 
 #include "Util.hpp"
 
+// Encapsulates functions specific to Serial communication.
 namespace Serial
 {
 // Initializes serial communication.
@@ -101,11 +102,11 @@ static inline void TransmitInt(const T number, const uint8_t base = 10)
 template <typename T, uint8_t size = 0>
 static inline void TransmitUint(const T number, const uint8_t base = 10)
 {
-    static_assert(Util::IsSame<T, uint8_t>::value || 
-    Util::IsSame<T, uint16_t>::value || 
-    Util::IsSame<T, uint32_t>::value ||
-    Util::IsSame<T, uint64_t>::value,
-    "Type T is not a valid uint");
+    static_assert(Util::IsSame<T, uint8_t>::value ||
+                      Util::IsSame<T, uint16_t>::value ||
+                      Util::IsSame<T, uint32_t>::value ||
+                      Util::IsSame<T, uint64_t>::value,
+                  "Type T is not a valid uint");
 
     if constexpr (size == 0)
     {
