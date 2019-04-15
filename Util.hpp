@@ -86,6 +86,16 @@ constexpr inline char *IntToString(const T value, char *buffer, const uint8_t ba
     return strrev(buffer);
 }
 
+char* ToUpper(char* str)
+{
+    char* p = str;
+    while (p != 0)
+    {
+        if (p >= 'a' && p <= 'z')
+        *p -= 32;
+        p++;
+    }
+}
 
 // These to structs are used to do type equallity at compile time.
 template <typename T, typename U>
