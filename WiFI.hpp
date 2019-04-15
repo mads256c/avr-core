@@ -31,18 +31,13 @@ static inline char GetChar()
     return (char)c;
 }
 
-static inline bool GetCommand(const char)
-{
-    
-}
-
-//str should point to the end of the string
+// str should point to the end of the string
 static inline bool IsOk(const char * const str)
 {
     return *(str - 3) == 'O' && *(str - 2) == 'K' && *(str - 1) == '\r' && *str == '\n';
 }
 
-//str should point to the end of the string
+// str should point to the end of the string
 static inline bool IsError(const char *const str)
 {
     return *(str - 6) == 'E' && *(str - 5) == 'R' && *(str - 4) == 'R' && *(str - 3) == 'O' && *(str - 2) == 'R' && *(str - 1) == '\r' && *str == '\n';
@@ -68,6 +63,7 @@ static inline CommandPointers ReceiveCommand(char* buffer)
     buffer[i - 1] = 0;
 
     pointers.Command = buffer;
+    pointers.Data = buffer + i;
 
     while(!(IsOk(buffer + i - 1) || IsError(buffer + i - 1)))
     {
@@ -75,6 +71,8 @@ static inline CommandPointers ReceiveCommand(char* buffer)
         buffer[i] = c;
         i++;
     }
+
+
 
     if (IsOk(buffer + i - 1)) pointers.Status = buffer + i - 5;
     if (IsError(buffer + i - 1)) pointers.Status = buffer + i - 7;
