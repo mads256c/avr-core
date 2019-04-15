@@ -53,6 +53,7 @@ static inline CommandPointers ReceiveCommand(char* buffer)
     CommandPointers pointers;
 
     char c = GetChar();
+    buffer[0] = c;
     uint16_t i = 1;
 
     // Get command
