@@ -74,7 +74,13 @@ static inline CommandPointers ReceiveCommand(char* buffer)
 
 
 
-    if (IsOk(buffer + i - 1)) pointers.Status = buffer + i - 5;
+    if (IsOk(buffer + i - 1))
+    {
+        pointers.Status = buffer + i - 5;
+        buffer[i - 6] = 0;
+        buffer[i - 7] = 0;
+    }
+
     if (IsError(buffer + i - 1)) pointers.Status = buffer + i - 7;
 
     return pointers;
