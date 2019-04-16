@@ -95,6 +95,8 @@ static inline CommandPointers ReceiveCommand(char *buffer)
         buffer[i - 9] = 0;
     }
 
+    buffer[i] = 0;
+
     return pointers;
 }
 
