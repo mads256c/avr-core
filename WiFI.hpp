@@ -146,7 +146,9 @@ static inline char *ParseMac(char *data)
 
     p[17] = 0;
 
-    return p;
+    
+
+    return Util::ToUpper(p);
 }
 
 static inline void Connect(const char *const gateway)
