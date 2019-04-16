@@ -52,6 +52,7 @@ static inline bool IsError(const char *const str)
     return *(str - 6) == 'E' && *(str - 5) == 'R' && *(str - 4) == 'R' && *(str - 3) == 'O' && *(str - 2) == 'R' && *(str - 1) == '\r' && *str == '\n';
 }
 
+// str should point to the end of the string
 static inline bool IsFail(const char *const str)
 {
     return *(str - 5) == 'F' && *(str - 4) == 'A' && *(str - 3) == 'I' && *(str - 2) == 'L' && *(str - 1) == '\r' && *str == '\n';
