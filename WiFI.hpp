@@ -111,7 +111,7 @@ static inline IpPointers ParseIps(char * data)
 
     *p = 0;
 
-    p += 23; //length of \r\n+CIPSTA_CUR:gateway:"
+    p += 24; //length of \r\n+CIPSTA_CUR:gateway:"
 
     ips.Gateway = p;
 
@@ -122,7 +122,7 @@ static inline IpPointers ParseIps(char * data)
 
     *p = 0;
 
-    p += 23; //length of \r\n+CIPSTA_CUR:netmask:"
+    p += 24; //length of \r\n+CIPSTA_CUR:netmask:"
 
     ips.Netmask = p;
 
