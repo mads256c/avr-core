@@ -194,7 +194,7 @@ static inline void WaitForClosed()
 {
     char buffer[8] = {0}; //CLOSED\r\n
 
-    while(buffer[7] != 'C' && buffer[6] != 'L' && buffer[5] != 'O' && buffer[4] != 'S' && buffer[3] != 'E' && buffer[2] != 'D' && buffer[1] != '\r' && buffer[0] != '\n')
+    while(!(buffer[7] == 'C' && buffer[6] == 'L' && buffer[5] == 'O' && buffer[4] == 'S' && buffer[3] == 'E' && buffer[2] == 'D' && buffer[1] == '\r' && buffer[0] == '\n'))
     {
         buffer[1] = buffer[2];
         buffer[2] = buffer[3];
