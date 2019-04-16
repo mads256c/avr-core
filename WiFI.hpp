@@ -12,6 +12,13 @@ struct CommandPointers
     char *Status = 0;
 };
 
+struct IpPointers
+{
+    char *Ip = 0;
+    char *Gateway = 0;
+    char *Netmask = 0;
+};
+
 static inline void SendCommand(const char *const str)
 {
     Serial.write(str);
@@ -88,6 +95,47 @@ static inline CommandPointers ReceiveCommand(char *buffer)
 
     return pointers;
 }
+
+static inline IpPointers ParseIps(char * data)
+{
+    IpPointers ips;
+
+    char* p = data + 16; //length of +CIPSTA_CUR:ip:"
+
+    ips.Ip = p;
+
+    while (*p != '"')
+    {
+        p++;
+    }
+
+    *p = 0;
+
+    p += 23; //length of \r\n+CIPSTA_CUR:gateway:"
+
+    ips.Gateway = p;
+
+    while (*p != '"')
+    {
+        p++;
+    }
+
+    *p = 0;
+
+    p += 23; //length of \r\n+CIPSTA_CUR:netmask:"
+
+    ips.Netmask = p;
+
+    while (*p != '"')
+    {
+        p++;
+    }
+
+    *p = 0;
+
+    return ips;
+}
+
 } // namespace WiFi
 
 #endif
