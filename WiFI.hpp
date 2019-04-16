@@ -52,6 +52,11 @@ static inline bool IsError(const char *const str)
     return *(str - 6) == 'E' && *(str - 5) == 'R' && *(str - 4) == 'R' && *(str - 3) == 'O' && *(str - 2) == 'R' && *(str - 1) == '\r' && *str == '\n';
 }
 
+static inline bool IsFail(const char *const str)
+{
+    return *(str - 5) == 'F' && *(str - 4) == 'A' && *(str - 3) == 'I' && *(str - 2) == 'L' && *(str - 1) == '\r' && *str == '\n';
+}
+
 static inline CommandPointers ReceiveCommand(char *buffer)
 {
     CommandPointers pointers;
@@ -74,7 +79,7 @@ static inline CommandPointers ReceiveCommand(char *buffer)
     pointers.Command = buffer;
     pointers.Data = buffer + i;
 
-    while (!(IsOk(buffer + i - 1) || IsError(buffer + i - 1)))
+    while (!(IsOk(buffer + i - 1) || IsError(buffer + i - 1) || IsFail(buffer + i - 1)))
     {
         c = GetChar();
         buffer[i] = c;
@@ -84,8 +89,7 @@ static inline CommandPointers ReceiveCommand(char *buffer)
     if (IsOk(buffer + i - 1))
     {
         pointers.Status = buffer + i - 4;
-        buffer[i - 1] = 0;
-        buffer[i - 2] = 0;
+        
         buffer[i - 5] = 0;
         buffer[i - 6] = 0;
     }
@@ -93,11 +97,21 @@ static inline CommandPointers ReceiveCommand(char *buffer)
     if (IsError(buffer + i - 1))
     {
         pointers.Status = buffer + i - 7;
-        buffer[i - 1] = 0;
-        buffer[i - 2] = 0;
+
         buffer[i - 8] = 0;
         buffer[i - 9] = 0;
     }
+
+    if (IsFail(buffer + i - 1))
+    {
+        pointers.Status = buffer + i - 6;
+
+        buffer[i - 7] = 0;
+        buffer[i - 8] = 0;
+    }
+
+    buffer[i - 1] = 0;
+    buffer[i - 2] = 0;
 
     buffer[i] = 0;
 
