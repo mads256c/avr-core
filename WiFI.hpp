@@ -209,6 +209,21 @@ static inline void WaitForClosed()
     }
 }
 
+static inline void WaitForReady()
+{
+    char buffer[7] = {0}; //ready\r\n
+    while (!(buffer[0] == 'r' && buffer[1] == 'e' && buffer[2] == 'a' && buffer[3] == 'd' && buffer[4] == 'y' && buffer[5] == '\r' && buffer[6] == '\n'))
+    {
+        buffer[0] = buffer[1];
+        buffer[1] = buffer[2];
+        buffer[2] = buffer[3];
+        buffer[3] = buffer[4];
+        buffer[4] = buffer[5];
+        buffer[5] = buffer[6];
+        buffer[6] = GetChar();
+    }
+}
+
 } // namespace WiFi
 
 #endif
