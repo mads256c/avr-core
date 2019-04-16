@@ -158,7 +158,7 @@ static inline void Connect(const char *const gateway)
 
 static inline void AddDevice(const char *const mac, const char *const ip, const char *const gateway)
 {
-    char buffer[250] = "GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=";
+    char buffer[200] = "GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=";
 
     char *p = buffer + 50; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=
     strcpy(p, mac);
@@ -176,7 +176,7 @@ static inline void AddDevice(const char *const mac, const char *const ip, const 
     uint16_t len = strlen(buffer);
 
     Serial.write("AT+CIPSEND=");
-    char buf[5] = {0};
+    char buf[10] = {0};
     Serial.write(Util::UintToString<uint16_t>(len, buf, 10));
     Serial.write('\r');
     Serial.write('\n');
