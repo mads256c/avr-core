@@ -89,9 +89,9 @@ constexpr inline char *IntToString(const T value, char *buffer, const uint8_t ba
 char* ToUpper(char* str)
 {
     char* p = str;
-    while (p != 0)
+    while (*p != 0)
     {
-        if (p >= 'a' && p <= 'z')
+        if (*p >= 'a' && *p <= 'z')
         *p -= 32;
         p++;
     }
