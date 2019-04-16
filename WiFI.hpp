@@ -146,8 +146,6 @@ static inline char *ParseMac(char *data)
 
     p[17] = 0;
 
-    
-
     return Util::ToUpper(p);
 }
 
@@ -166,7 +164,7 @@ static inline void AddDevice(const char *const mac, const char *const ip, const 
 
     char *p = buffer + 50; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=
     strcpy(p, mac);
-    p[67] = '&';
+    buffer[66] = '&';
     p = buffer + 71; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=
     strcpy(p, ip);
     p = buffer + 71 + strlen(ip);
@@ -194,7 +192,7 @@ static inline void WaitForClosed()
 {
     char buffer[8] = {0}; //CLOSED\r\n
 
-    while(!(buffer[0] == 'C' && buffer[1] == 'L' && buffer[2] == 'O' && buffer[3] == 'S' && buffer[4] == 'E' && buffer[5] == 'D' && buffer[6] == '\r' && buffer[7] == '\n'))
+    while (!(buffer[0] == 'C' && buffer[1] == 'L' && buffer[2] == 'O' && buffer[3] == 'S' && buffer[4] == 'E' && buffer[5] == 'D' && buffer[6] == '\r' && buffer[7] == '\n'))
     {
         buffer[0] = buffer[1];
         buffer[1] = buffer[2];
@@ -204,7 +202,6 @@ static inline void WaitForClosed()
         buffer[5] = buffer[6];
         buffer[6] = buffer[7];
         buffer[7] = GetChar();
-
     }
 }
 
