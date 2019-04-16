@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include <HardwareSerial.h>
-#include <Util.hpp>
 
 namespace WiFi
 {
