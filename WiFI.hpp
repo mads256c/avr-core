@@ -181,7 +181,7 @@ static inline void AddDevice(const char *const mac, const char *const ip, const 
     Serial.write('\r');
     Serial.write('\n');
 
-    _delay_ms(1000);
+    delay(1000);
     Serial.write(buffer);
 }
 
