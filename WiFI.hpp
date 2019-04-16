@@ -171,6 +171,9 @@ static inline void AddDevice(const char *const mac, const char *const ip, const 
     Serial.write(Util::UintToString<uint16_t>(len, buf, 10));
     Serial.write('\r');
     Serial.write('\n');
+
+    _delay_ms(1000);
+    Serial.write(buffer);
 }
 
 } // namespace WiFi
