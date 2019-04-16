@@ -96,7 +96,7 @@ char* ToUpper(char* str)
         p++;
     }
 
-    return p;
+    return str;
 }
 
 // These to structs are used to do type equallity at compile time.
