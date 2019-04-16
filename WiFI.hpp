@@ -165,9 +165,9 @@ static inline void AddDevice(const char *const mac, const char *const ip, const 
     char *p = buffer + 50; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=
     strcpy(p, mac);
     buffer[67] = '&';
-    p = buffer + 70; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=
+    p = buffer + 71; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=
     strcpy(p, ip);
-    p = buffer + 70 + strlen(ip);
+    p = buffer + 71 + strlen(ip);
     strcpy(p, " HTTP/1.1\r\nHost: ");
     p += 17; // length of " HTTP/1.1\r\nHost: "
     strcpy(p, gateway);
