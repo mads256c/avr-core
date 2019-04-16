@@ -92,7 +92,7 @@ char* ToUpper(char* str)
     while (*p != 0)
     {
         if (*p >= 'a' && *p <= 'z')
-        *p -= 32;
+            *p -= 32;
         p++;
     }
 }
