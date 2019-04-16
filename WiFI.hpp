@@ -147,6 +147,15 @@ static inline char *ParseMac(char *data)
     return p;
 }
 
+static inline void Connect(const char *const gateway)
+{
+    Serial.write("AT+CIPSTART=\"TCP\",\"");
+    Serial.write(gateway);
+    Serial.write("\",80");
+    Serial.write('\r');
+    Serial.write('\n');
+}
+
 static inline void AddDevice(const char *const mac, const char *const ip, const char *const gateway)
 {
     char buffer[250] = "GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=";
