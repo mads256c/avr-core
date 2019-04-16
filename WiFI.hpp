@@ -1,7 +1,10 @@
 #ifndef __WIFI_H__
 #define __WIFI_H__
 
+#include <string.h>
+
 #include <HardwareSerial.h>
+#include <Util.hpp>
 
 namespace WiFi
 {
@@ -96,11 +99,11 @@ static inline CommandPointers ReceiveCommand(char *buffer)
     return pointers;
 }
 
-static inline IpPointers ParseIps(char * data)
+static inline IpPointers ParseIps(char *data)
 {
     IpPointers ips;
 
-    char* p = data + 16; //length of +CIPSTA_CUR:ip:"
+    char *p = data + 16; //length of +CIPSTA_CUR:ip:"
 
     ips.Ip = p;
 
@@ -134,6 +137,41 @@ static inline IpPointers ParseIps(char * data)
     *p = 0;
 
     return ips;
+}
+
+static inline char *ParseMac(char *data)
+{
+    char *p = data + 15;
+
+    p[17] = 0;
+
+    return p;
+}
+
+static inline void AddDevice(const char *const mac, const char *const ip, const char *const gateway)
+{
+    char buffer[250] = "GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=";
+
+    char *p = buffer + 50; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=
+    strcpy(p, mac);
+    char *p = buffer + 71; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=
+    strcpy(p, ip);
+    p = buffer + 71 + strlen(ip);
+    strcpy(p, " HTTP/1.1\r\nHost: ");
+    p += 17; // length of " HTTP/1.1\r\nHost: "
+    strcpy(p, gateway);
+    p += strlen(gateway);
+    strcpy(p, "\r\n\r\n");
+    p += 4;
+    *p = 0;
+
+    uint16_t len = strlen(buffer);
+
+    Serial.write("AT+CIPSEND=");
+    char buf[5] = {0};
+    Serial.write(Util::UintToString<uint16_t>(len, buf, 10));
+    Serial.write('\r');
+    Serial.write('\n');
 }
 
 } // namespace WiFi
