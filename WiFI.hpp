@@ -32,7 +32,7 @@ static inline char GetChar()
 }
 
 // str should point to the end of the string
-static inline bool IsOk(const char * const str)
+static inline bool IsOk(const char *const str)
 {
     return *(str - 3) == 'O' && *(str - 2) == 'K' && *(str - 1) == '\r' && *str == '\n';
 }
@@ -43,7 +43,7 @@ static inline bool IsError(const char *const str)
     return *(str - 6) == 'E' && *(str - 5) == 'R' && *(str - 4) == 'R' && *(str - 3) == 'O' && *(str - 2) == 'R' && *(str - 1) == '\r' && *str == '\n';
 }
 
-static inline CommandPointers ReceiveCommand(char* buffer)
+static inline CommandPointers ReceiveCommand(char *buffer)
 {
     CommandPointers pointers;
 
@@ -52,7 +52,7 @@ static inline CommandPointers ReceiveCommand(char* buffer)
     uint16_t i = 1;
 
     // Get command
-    while(!(i >= 3 && buffer[i - 2] == '\r' && buffer[i - 1] == '\n'))
+    while (!(i >= 3 && buffer[i - 2] == '\r' && buffer[i - 1] == '\n'))
     {
         c = GetChar();
         buffer[i] = c;
@@ -65,14 +65,12 @@ static inline CommandPointers ReceiveCommand(char* buffer)
     pointers.Command = buffer;
     pointers.Data = buffer + i;
 
-    while(!(IsOk(buffer + i - 1) || IsError(buffer + i - 1)))
+    while (!(IsOk(buffer + i - 1) || IsError(buffer + i - 1)))
     {
         c = GetChar();
         buffer[i] = c;
         i++;
     }
-
-
 
     if (IsOk(buffer + i - 1))
     {
@@ -81,7 +79,12 @@ static inline CommandPointers ReceiveCommand(char* buffer)
         buffer[i - 6] = 0;
     }
 
-    if (IsError(buffer + i - 1)) pointers.Status = buffer + i - 7;
+    if (IsError(buffer + i - 1))
+    {
+        pointers.Status = buffer + i - 7;
+        buffer[i - 8] = 0;
+        buffer[i - 9] = 0;
+    }
 
     return pointers;
 }

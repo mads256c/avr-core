@@ -124,6 +124,4 @@ static inline void TransmitUint(const T number, const uint8_t base = 10)
 }
 } // namespace Serial
 
-ISR
-
 #endif
