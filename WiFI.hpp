@@ -166,7 +166,7 @@ static inline void AddDevice(const char *const mac, const char *const ip, const 
 
     char *p = buffer + 50; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=
     strcpy(p, mac);
-    p[68] = '&';
+    p[67] = '&';
     p = buffer + 71; // length of GET /api/adddevice.php?name=helloworld&type=0&mac=AA:BB:CC:DD:EE:FF&ip=
     strcpy(p, ip);
     p = buffer + 71 + strlen(ip);
