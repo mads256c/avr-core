@@ -1,3 +1,9 @@
+// Made by Gruppe 7
+// Mads Bluhme Jeppesen
+// Simon Søndergaard Christensen
+// Mads Beyer Mogensen
+// This group is lucky to get this amazing source code :)
+
 #ifndef __SERVO_H__
 #define __SERVO_H__
 
